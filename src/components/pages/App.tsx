@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import "../../css/material-ui-base.css";
+import Button from "@material-ui/core/Button";
+
 const App: React.FC = () => {
   return (
     <main>
-      <p>Hello! React Router authorization routing!</p>
+      <Button variant="contained" color="primary">
+        Hello! React Router authorization routing!
+      </Button>
     </main>
   );
 };
