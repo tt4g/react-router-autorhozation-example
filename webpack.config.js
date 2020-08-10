@@ -30,7 +30,7 @@ const htmlWebpackPluginTemplatePath = path.join(
 module.exports = {
   target: "web",
   entry: {
-    App: "./src/components/pages/App.tsx",
+    App: "./src/components/App.tsx",
   },
   output: {
     path: outputPath,
