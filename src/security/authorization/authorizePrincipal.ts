@@ -1,8 +1,8 @@
-import type { AuthenticatedPrincipal } from "../Principal";
 import { isNonEmptyArray } from "../../types/NonEmptyArray";
 import type { ReadonlyNonEmptyArray } from "../../types/NonEmptyArray";
-import type { Role } from "../Role";
 import type { Authority } from "../Authority";
+import type { AuthenticatedPrincipal } from "../Principal";
+import type { Role } from "../Role";
 
 type HasRoles = (
   principal: AuthenticatedPrincipal,

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { authorizePrincipal } from "./authorization/authorizePrincipal";
 import { AuthenticationContext } from "./AuthenticationProvider";
 import type { Authority } from "./Authority";
+import { authorizePrincipal } from "./authorization/authorizePrincipal";
 import type { Role } from "./Role";
 
 interface RequiredAuthorizedProps {

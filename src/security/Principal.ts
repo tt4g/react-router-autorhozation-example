@@ -1,6 +1,6 @@
+import type { ReadonlyNonEmptyArray } from "../types/NonEmptyArray";
 import type { Authority } from "./Authority";
 import type { Role } from "./Role";
-import type { ReadonlyNonEmptyArray } from "../types/NonEmptyArray";
 
 type Authenticated = {
   readonly isAuthenticated: true;

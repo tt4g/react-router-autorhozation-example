@@ -1,24 +1,24 @@
+import { Box, Button, TextField } from "@material-ui/core";
 import React, { useState, useContext, useCallback } from "react";
 
 import { Helmet } from "react-helmet";
 
 import { Redirect } from "react-router-dom";
 
-import { Box, Button, TextField } from "@material-ui/core";
 
-import { Layout } from "../organisms/Layout";
 import type { AuthenticationRequest } from "../../security/authentication/AuthenticationRequest";
 import type { AuthenticationResult } from "../../security/authentication/AuthenticationResult";
+import {
+  AuthenticationContext,
+  AuthenticationFunctionContext,
+} from "../../security/AuthenticationProvider";
+import { ALL_AUTHORITIES } from "../../security/Authority";
 import {
   isAdmin,
   isUser,
 } from "../../security/authorization/authorizePrincipal";
 import { AuthenticatedUser } from "../../security/Principal";
-import { ALL_AUTHORITIES } from "../../security/Authority";
-import {
-  AuthenticationContext,
-  AuthenticationFunctionContext,
-} from "../../security/AuthenticationProvider";
+import { Layout } from "../organisms/Layout";
 import { routes } from "../routes/routes";
 
 const mockAuthentication: (

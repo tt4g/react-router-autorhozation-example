@@ -1,10 +1,10 @@
+import Box from "@material-ui/core/Box";
 import React from "react";
 
 import { Helmet } from "react-helmet";
 
 import { Link, useLocation } from "react-router-dom";
 
-import Box from "@material-ui/core/Box";
 
 import { Layout } from "../organisms/Layout";
 

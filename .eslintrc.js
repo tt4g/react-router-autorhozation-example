@@ -9,6 +9,9 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
     "prettier",
     "prettier/react",
     "prettier/@typescript-eslint",
@@ -22,7 +25,12 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "@typescript-eslint"],
-  rules: {},
+  rules: {
+    "import/order": [
+      "ERROR",
+      { alphabetize: { order: "asc", caseInsensitive: true } },
+    ],
+  },
   overrides: [
     {
       files: ["**/*.tsx"],

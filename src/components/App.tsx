@@ -7,15 +7,15 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import "../css/material-ui-base.css";
 
-import { AdminPage } from "./pages/AdminPage";
-import { LoginPage } from "./pages/LoginPage";
-import { UserPage } from "./pages/UserPage";
-import { NotFoundPage } from "./pages/NotFoundPage";
-import { routes } from "./routes/routes";
-import { ScrollToTop } from "./routes/ScrollToTop";
 import { AuthenticationProvider } from "../security/AuthenticationProvider";
 import { AdminOnly, UserOnly } from "../security/RequiredAuthorized";
 import { AccessDeniedPage } from "./pages/AccessDeniedPage";
+import { AdminPage } from "./pages/AdminPage";
+import { LoginPage } from "./pages/LoginPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import { UserPage } from "./pages/UserPage";
+import { routes } from "./routes/routes";
+import { ScrollToTop } from "./routes/ScrollToTop";
 
 const App: React.FC = () => {
   return (
