@@ -1,10 +1,8 @@
-import type { Principal, AuthenticatedPrincipal } from "../Principal";
-
-type AuthenticatedResult = Principal & AuthenticatedPrincipal;
+import type { AuthenticatedPrincipal } from "../Principal";
 
 interface AuthenticationSuccess {
   readonly isAuthenticated: true;
-  readonly result: AuthenticatedResult;
+  readonly result: AuthenticatedPrincipal;
 }
 
 interface AuthenticationFailed {

@@ -2,18 +2,18 @@ import type { Authority } from "./Authority";
 import type { Role } from "./Role";
 import type { ReadonlyNonEmptyArray } from "../types/NonEmptyArray";
 
-type AuthenticatedPrincipal = {
+type Authenticated = {
   readonly isAuthenticated: true;
 };
 
-type UnauthenticatedPrincipal = {
+type NotAuthenticated = {
   readonly isAuthenticated: false;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface AnonymousUser extends UnauthenticatedPrincipal {}
+interface AnonymousUser extends NotAuthenticated {}
 
-interface AuthenticatedUser extends AuthenticatedPrincipal {
+interface AuthenticatedUser extends Authenticated {
   readonly isAuthenticated: true;
 
   readonly identity: string;
@@ -24,11 +24,13 @@ interface AuthenticatedUser extends AuthenticatedPrincipal {
 }
 
 type Principal = AnonymousUser | AuthenticatedUser;
+type AuthenticatedPrincipal = Principal & Authenticated;
 
 export type {
   AnonymousUser,
   AuthenticatedUser,
   Principal,
+  Authenticated,
+  NotAuthenticated,
   AuthenticatedPrincipal,
-  UnauthenticatedPrincipal,
 };
