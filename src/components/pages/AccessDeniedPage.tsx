@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Helmet } from "react-helmet";
+
 import { Link, useLocation } from "react-router-dom";
 
 import Box from "@material-ui/core/Box";
@@ -19,6 +21,9 @@ const AccessDeniedPage: React.FC<AccessDeniedPageProps> = ({
 
   return (
     <Layout>
+      <Helmet>
+        <title>Access Denied!</title>
+      </Helmet>
       <Box>
         <h3>You cannot access this URL.</h3>
         <p>

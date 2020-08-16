@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Helmet } from "react-helmet";
+
 import { Link, useLocation } from "react-router-dom";
 
 import Box from "@material-ui/core/Box";
@@ -12,6 +14,9 @@ const NotFoundPage: React.FC = () => {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Not Found!</title>
+      </Helmet>
       <Box>
         <h3>Not Found!</h3>
         <p>

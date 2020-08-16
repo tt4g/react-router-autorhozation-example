@@ -1,5 +1,7 @@
 import React, { useState, useContext, useCallback } from "react";
 
+import { Helmet } from "react-helmet";
+
 import { Redirect } from "react-router-dom";
 
 import { Box, Button, TextField } from "@material-ui/core";
@@ -84,6 +86,9 @@ const LoginPage: React.FC = () => {
   } else {
     return (
       <Layout>
+        <Helmet>
+          <title>Login Page</title>
+        </Helmet>
         <Box>Login Page.</Box>
         {authenticationFailed && <p>Authentication failed!</p>}
         <form
