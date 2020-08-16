@@ -150,6 +150,7 @@ module.exports = {
         // Material-UI viewport.
         // https://material-ui.com/getting-started/usage/#responsive-meta-tag
         viewport: "minimum-scale=1, initial-scale=1, width=device-width",
+        charset: "UTF-8",
       },
       scriptLoading: "blocking",
       base: false,
