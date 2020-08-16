@@ -1,10 +1,19 @@
 import React, { useState, useCallback } from "react";
 import { Principal, AnonymousUser } from "./Principal";
 
+type AuthenticationContextState = {
+  readonly principal: Principal;
+};
+
+const anonymousUser: AnonymousUser = { isAuthenticated: false };
+const AuthenticationContext = React.createContext<AuthenticationContextState>({
+  principal: anonymousUser,
+});
+
 type LoginFunction = (principal: Principal) => void;
 type LogoutFunction = () => void;
 
-type AuthenticationFunctions = {
+type AuthenticationFunctionContextState = {
   readonly login: LoginFunction;
   readonly logout: LogoutFunction;
 };
@@ -12,10 +21,8 @@ type AuthenticationFunctions = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function
 const dummyAuthenticationFunction: (...args: any[]) => void = () => {};
 
-const anonymousUser: AnonymousUser = { isAuthenticated: false };
-const AuthenticationContext = React.createContext<Principal>(anonymousUser);
 const AuthenticationFunctionContext = React.createContext<
-  AuthenticationFunctions
+  AuthenticationFunctionContextState
 >({ login: dummyAuthenticationFunction, logout: dummyAuthenticationFunction });
 
 const AuthenticationProvider: React.FC = ({ children }) => {
@@ -32,7 +39,7 @@ const AuthenticationProvider: React.FC = ({ children }) => {
   }, [setPrincipal]);
 
   return (
-    <AuthenticationContext.Provider value={principal}>
+    <AuthenticationContext.Provider value={{ principal }}>
       <AuthenticationFunctionContext.Provider value={{ login, logout }}>
         {children}
       </AuthenticationFunctionContext.Provider>

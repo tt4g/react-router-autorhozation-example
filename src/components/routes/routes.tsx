@@ -1,4 +1,10 @@
-const routes = {
+const ALL_PAGE_NAMES = ["login", "admin", "user"] as const;
+type PageName = typeof ALL_PAGE_NAMES[number];
+
+type PageRoute = { readonly path: string };
+type Routes = { readonly [key in PageName]: PageRoute };
+
+const routes: Routes = {
   login: {
     path: "/login",
   },
@@ -11,3 +17,4 @@ const routes = {
 } as const;
 
 export { routes };
+export type { PageRoute, Routes };

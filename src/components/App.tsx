@@ -12,6 +12,8 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { routes } from "./routes/routes";
 import { ScrollToTop } from "./routes/ScrollToTop";
 import { AuthenticationProvider } from "../security/AuthenticationProvider";
+import { AdminOnly, UserOnly } from "../security/RequiredAuthorized";
+import { AccessDeniedPage } from "./pages/AccessDeniedPage";
 
 const App: React.FC = () => {
   return (
@@ -21,10 +23,22 @@ const App: React.FC = () => {
           <LoginPage />
         </Route>
         <Route path={routes.admin.path}>
-          <AdminPage />
+          <AdminOnly
+            FallbackComponent={() => (
+              <AccessDeniedPage navigateRoute={routes.login} />
+            )}
+          >
+            <AdminPage />
+          </AdminOnly>
         </Route>
         <Route path={routes.user.path}>
-          <UserPage />
+          <UserOnly
+            FallbackComponent={() => (
+              <AccessDeniedPage navigateRoute={routes.login} />
+            )}
+          >
+            <UserPage />
+          </UserOnly>
         </Route>
         <Route path="*">
           <NotFoundPage />
