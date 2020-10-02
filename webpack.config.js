@@ -13,7 +13,7 @@ const publicPath = "/";
 const tsConfigFile = "tsconfig.json";
 
 const babelLoader = { loader: "babel-loader" };
-const excludeRule = /(node_modules|bower_components)/;
+const sourceRoot = path.resolve(__dirname, "src/");
 const enableEsModule = false;
 const sourceMap = isDevelopment ? "source-map" : false;
 
@@ -23,6 +23,9 @@ const htmlWebpackPluginTemplatePath = path.join(
   "html-webpack-plugin",
   "index.html"
 );
+
+// NOTE: devServer.publicPath always starts and ends with a forward slash.
+const devServerPublicPath = path.posix.join("/", publicPath, "./");
 
 /**
  * @type import("webpack").Configuration
@@ -46,17 +49,17 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: excludeRule,
+        include: [sourceRoot],
         use: [babelLoader],
       },
       {
         test: /\.tsx?$/,
-        exclude: excludeRule,
+        include: [sourceRoot],
         use: [babelLoader],
       },
       {
         test: /\.css$/,
-        exclude: excludeRule,
+        include: [sourceRoot],
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -108,10 +111,8 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
-        // NOTE: Don't exclude node_modules directory because get font files
-        // from node_modules/fontsource-roboto directory.
-        //
-        // exclude: excludeRule,
+        // NOTE: Include node_modules/fontsource-roboto directory to bundle Roboto-font.
+        include: [path.resolve(__dirname, "node_modules/fontsource-roboto")],
         use: [
           {
             loader: "file-loader",
@@ -200,10 +201,20 @@ module.exports = {
   },
   devtool: sourceMap,
   devServer: {
-    contentBase: outputPath,
+    contentBase: false,
     port: 8080,
-    publicPath: publicPath,
+    publicPath: devServerPublicPath,
     index: "index.html",
+    // Fall back on all react-router routing path patterns that use BrowserHistory.
+    historyApiFallback: {
+      rewrites: [
+        {
+          // Need to match the following regex with basename prop of BrowserRouter.
+          from: /^\/.*/,
+          to: devServerPublicPath,
+        },
+      ],
+    },
     hot: true,
     hotOnly: true,
     overlay: true,
